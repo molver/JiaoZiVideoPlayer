@@ -104,7 +104,7 @@ public class ListViewMultiHolderActivity extends AppCompatActivity {
                 } else {
                     viewHolder = new VideoHolder();
                     convertView = mInflater.inflate(R.layout.item_videoview, null);
-                    viewHolder.jzVideoPlayer = (JZVideoPlayerStandard) convertView.findViewById(R.id.videoplayer);
+                    viewHolder.jzVideoPlayer = convertView.findViewById(R.id.videoplayer);
                     convertView.setTag(viewHolder);
                 }
 
@@ -123,7 +123,7 @@ public class ListViewMultiHolderActivity extends AppCompatActivity {
                     textViewHolder = new TextViewHolder();
                     LayoutInflater mInflater = LayoutInflater.from(context);
                     convertView = mInflater.inflate(R.layout.item_textview, null);
-                    textViewHolder.textView = (TextView) convertView.findViewById(R.id.textview);
+                    textViewHolder.textView = convertView.findViewById(R.id.textview);
                     convertView.setTag(textViewHolder);
                 }
             }
