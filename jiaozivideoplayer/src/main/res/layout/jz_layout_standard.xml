@@ -5,19 +5,20 @@
     android:background="@android:color/black"
     android:descendantFocusability="blocksDescendants">
 
-    <!--背景图-->
-    <ImageView
-        android:id="@+id/img_backgrpund"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scaleType="fitXY" />
-
     <FrameLayout
         android:id="@+id/surface_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
     </FrameLayout>
+
+    <!--背景图-->
+    <ImageView
+        android:id="@+id/img_backgrpund"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"
+        android:visibility="gone"/>
 
     <!--音频播放动图-->
     <ImageView
