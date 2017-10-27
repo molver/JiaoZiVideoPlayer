@@ -67,6 +67,10 @@ public class JZVideoPlayerStandard extends JZVideoPlayer {
     protected ProgressBar mDialogBrightnessProgressBar;
     protected TextView mDialogBrightnessTextView;
     private boolean brocasting = false;
+
+
+    public PlayStatusLinstener playStatusLinstener;
+
     private BroadcastReceiver battertReceiver = new BroadcastReceiver() {
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
@@ -177,6 +181,11 @@ public class JZVideoPlayerStandard extends JZVideoPlayer {
         lp = loadingProgressBar.getLayoutParams();
         lp.height = size;
         lp.width = size;
+    }
+
+    //设置播放状态监听
+    public void setPlayStatusLinstener(PlayStatusLinstener playStatusLinstener){
+        this.playStatusLinstener = playStatusLinstener;
     }
 
     @Override
@@ -641,18 +650,31 @@ public class JZVideoPlayerStandard extends JZVideoPlayer {
     }
 
     public void updateStartImage() {
+
         if (currentState == CURRENT_STATE_PLAYING) {
             startButton.setImageResource(R.drawable.jz_click_pause_selector);
             retryTextView.setVisibility(INVISIBLE);
+            if (playStatusLinstener!=null){
+                playStatusLinstener.onPlaying();
+            }
         } else if (currentState == CURRENT_STATE_ERROR) {
             startButton.setImageResource(R.drawable.jz_click_error_selector);
             retryTextView.setVisibility(INVISIBLE);
+            if (playStatusLinstener!=null){
+                playStatusLinstener.onError();
+            }
         } else if (currentState == CURRENT_STATE_AUTO_COMPLETE) {
             startButton.setImageResource(R.drawable.jz_click_replay_selector);
             retryTextView.setVisibility(VISIBLE);
+            if (playStatusLinstener!=null){
+                playStatusLinstener.onComplete();
+            }
         } else {
             startButton.setImageResource(R.drawable.jz_click_play_selector);
             retryTextView.setVisibility(INVISIBLE);
+            if (playStatusLinstener!=null){
+                playStatusLinstener.onPause();
+            }
         }
     }
 

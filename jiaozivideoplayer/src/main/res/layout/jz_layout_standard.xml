@@ -16,12 +16,9 @@
         android:id="@+id/thumb"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
+        android:layout_above="@+id/bottom_progress"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
         android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
         android:background="#000000"
         android:scaleType="fitCenter" />
 
@@ -196,7 +193,7 @@
             android:id="@+id/start"
             android:layout_width="@dimen/jz_start_button_w_h_normal"
             android:layout_height="@dimen/jz_start_button_w_h_normal"
-            android:src="@drawable/jz_click_play_selector" />
+            android:src="@drawable/jz_click_play_selector"/>
     </LinearLayout>
 
 
