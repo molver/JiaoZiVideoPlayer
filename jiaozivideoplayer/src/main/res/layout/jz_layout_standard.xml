@@ -27,7 +27,6 @@
         android:layout_height="wrap_content"
         android:scaleType="center"
         android:layout_centerHorizontal="true"
-        android:layout_below="@+id/start_layout"
         android:visibility="gone"/>
 
     <ImageView
