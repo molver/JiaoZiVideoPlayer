@@ -672,7 +672,8 @@ public class JZVideoPlayerStandard extends JZVideoPlayer {
             }
         } else if (currentState == CURRENT_STATE_AUTO_COMPLETE) {
             startButton.setImageResource(R.drawable.jz_click_replay_selector);
-            retryTextView.setVisibility(VISIBLE);
+//            retryTextView.setVisibility(VISIBLE);
+            retryTextView.setVisibility(INVISIBLE);
             if (playStatusLinstener!=null){
                 playStatusLinstener.onComplete();
             }
