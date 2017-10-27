@@ -68,6 +68,10 @@ public class JZVideoPlayerStandard extends JZVideoPlayer {
     protected TextView mDialogBrightnessTextView;
     private boolean brocasting = false;
 
+    //播放器背景图
+    public  ImageView playBackgroundImg;
+    //播放器播放中动画
+    public ImageView playGifImg;
 
     public PlayStatusLinstener playStatusLinstener;
 
@@ -120,6 +124,9 @@ public class JZVideoPlayerStandard extends JZVideoPlayer {
         videoCurrentTime = findViewById(R.id.video_current_time);
         retryTextView = findViewById(R.id.retry_text);
         clarity = findViewById(R.id.clarity);
+
+        playBackgroundImg = findViewById(R.id.img_backgrpund);
+        playGifImg = findViewById(R.id.img_play_gif);
 
         thumbImageView.setOnClickListener(this);
         backButton.setOnClickListener(this);
