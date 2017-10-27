@@ -25,9 +25,9 @@
         android:id="@+id/img_play_gif"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
         android:scaleType="center"
-        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/start_layout"
         android:visibility="gone"/>
 
     <ImageView
