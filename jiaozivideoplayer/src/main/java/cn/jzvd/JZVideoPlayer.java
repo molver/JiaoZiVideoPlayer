@@ -71,9 +71,25 @@ public abstract class JZVideoPlayer extends FrameLayout implements View.OnClickL
         public void onAudioFocusChange(int focusChange) {
             switch (focusChange) {
                 case AudioManager.AUDIOFOCUS_GAIN:
+                    try {
+                        if (JZMediaManager.instance().mediaPlayer != null &&
+                                !JZMediaManager.instance().mediaPlayer.isPlaying()) {
+                            JZMediaManager.instance().mediaPlayer.start();
+                        }
+                    } catch (IllegalStateException e) {
+                        e.printStackTrace();
+                    }
                     break;
                 case AudioManager.AUDIOFOCUS_LOSS:
-                    releaseAllVideos();
+//                    releaseAllVideos();
+                    try {
+                        if (JZMediaManager.instance().mediaPlayer != null &&
+                                JZMediaManager.instance().mediaPlayer.isPlaying()) {
+                            JZMediaManager.instance().mediaPlayer.pause();
+                        }
+                    } catch (IllegalStateException e) {
+                        e.printStackTrace();
+                    }
                     Log.d(TAG, "AUDIOFOCUS_LOSS [" + this.hashCode() + "]");
                     break;
                 case AudioManager.AUDIOFOCUS_LOSS_TRANSIENT:
