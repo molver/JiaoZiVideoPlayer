@@ -66,48 +66,48 @@ public abstract class JZVideoPlayer extends FrameLayout implements View.OnClickL
     public static boolean WIFI_TIP_DIALOG_SHOWED = false;
     public static long CLICK_QUIT_FULLSCREEN_TIME = 0;
     public static long lastAutoFullscreenTime = 0;
-    public static AudioManager.OnAudioFocusChangeListener onAudioFocusChangeListener = new AudioManager.OnAudioFocusChangeListener() {//是否新建个class，代码更规矩，并且变量的位置也很尴尬
-        @Override
-        public void onAudioFocusChange(int focusChange) {
-            switch (focusChange) {
-                case AudioManager.AUDIOFOCUS_GAIN:
-                    try {
-                        if (JZMediaManager.instance().mediaPlayer != null &&
-                                !JZMediaManager.instance().mediaPlayer.isPlaying()) {
-                            JZMediaManager.instance().mediaPlayer.start();
-                        }
-                    } catch (IllegalStateException e) {
-                        e.printStackTrace();
-                    }
-                    break;
-                case AudioManager.AUDIOFOCUS_LOSS:
-//                    releaseAllVideos();
-                    try {
-                        if (JZMediaManager.instance().mediaPlayer != null &&
-                                JZMediaManager.instance().mediaPlayer.isPlaying()) {
-                            JZMediaManager.instance().mediaPlayer.pause();
-                        }
-                    } catch (IllegalStateException e) {
-                        e.printStackTrace();
-                    }
-                    Log.d(TAG, "AUDIOFOCUS_LOSS [" + this.hashCode() + "]");
-                    break;
-                case AudioManager.AUDIOFOCUS_LOSS_TRANSIENT:
-                    try {
-                        if (JZMediaManager.instance().mediaPlayer != null &&
-                                JZMediaManager.instance().mediaPlayer.isPlaying()) {
-                            JZMediaManager.instance().mediaPlayer.pause();
-                        }
-                    } catch (IllegalStateException e) {
-                        e.printStackTrace();
-                    }
-                    Log.d(TAG, "AUDIOFOCUS_LOSS_TRANSIENT [" + this.hashCode() + "]");
-                    break;
-                case AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK:
-                    break;
-            }
-        }
-    };
+//    public static AudioManager.OnAudioFocusChangeListener onAudioFocusChangeListener = new AudioManager.OnAudioFocusChangeListener() {//是否新建个class，代码更规矩，并且变量的位置也很尴尬
+//        @Override
+//        public void onAudioFocusChange(int focusChange) {
+//            switch (focusChange) {
+//                case AudioManager.AUDIOFOCUS_GAIN:
+//                    try {
+//                        if (JZMediaManager.instance().mediaPlayer != null &&
+//                                !JZMediaManager.instance().mediaPlayer.isPlaying()) {
+//                            JZMediaManager.instance().mediaPlayer.start();
+//                        }
+//                    } catch (IllegalStateException e) {
+//                        e.printStackTrace();
+//                    }
+//                    break;
+//                case AudioManager.AUDIOFOCUS_LOSS:
+////                    releaseAllVideos();
+//                    try {
+//                        if (JZMediaManager.instance().mediaPlayer != null &&
+//                                JZMediaManager.instance().mediaPlayer.isPlaying()) {
+//                            JZMediaManager.instance().mediaPlayer.pause();
+//                        }
+//                    } catch (IllegalStateException e) {
+//                        e.printStackTrace();
+//                    }
+//                    Log.d(TAG, "AUDIOFOCUS_LOSS [" + this.hashCode() + "]");
+//                    break;
+//                case AudioManager.AUDIOFOCUS_LOSS_TRANSIENT:
+//                    try {
+//                        if (JZMediaManager.instance().mediaPlayer != null &&
+//                                JZMediaManager.instance().mediaPlayer.isPlaying()) {
+//                            JZMediaManager.instance().mediaPlayer.pause();
+//                        }
+//                    } catch (IllegalStateException e) {
+//                        e.printStackTrace();
+//                    }
+//                    Log.d(TAG, "AUDIOFOCUS_LOSS_TRANSIENT [" + this.hashCode() + "]");
+//                    break;
+//                case AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK:
+//                    break;
+//            }
+//        }
+//    };
     protected static JZUserAction JZ_USER_EVENT;
     protected static Timer UPDATE_PROGRESS_TIMER;
     public int currentState = -1;
@@ -552,7 +552,7 @@ public abstract class JZVideoPlayer extends FrameLayout implements View.OnClickL
         initTextureView();
         addTextureView();
         AudioManager mAudioManager = (AudioManager) getContext().getSystemService(Context.AUDIO_SERVICE);
-        mAudioManager.requestAudioFocus(onAudioFocusChangeListener, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN_TRANSIENT);
+//        mAudioManager.requestAudioFocus(onAudioFocusChangeListener, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN_TRANSIENT);
         JZUtils.scanForActivity(getContext()).getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         JZMediaManager.CURRENT_PLAYING_URL = JZUtils.getCurrentUrlFromMap(urlMap, currentUrlMapIndex);
         JZMediaManager.CURRENT_PLING_LOOP = loop;
@@ -736,7 +736,7 @@ public abstract class JZVideoPlayer extends FrameLayout implements View.OnClickL
         JZMediaManager.instance().currentVideoHeight = 0;
 
         AudioManager mAudioManager = (AudioManager) getContext().getSystemService(Context.AUDIO_SERVICE);
-        mAudioManager.abandonAudioFocus(onAudioFocusChangeListener);
+//        mAudioManager.abandonAudioFocus(onAudioFocusChangeListener);
         JZUtils.scanForActivity(getContext()).getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         clearFullscreenLayout();
         JZUtils.setRequestedOrientation(getContext(), NORMAL_ORIENTATION);
